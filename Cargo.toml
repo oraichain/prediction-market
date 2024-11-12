@@ -1,0 +1,43 @@
+[package]
+name = "prediction-market"
+version = "0.2.0"
+authors = ["Oraichain Labs"]
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/oraichain/prediction-market.git"
+homepage = "https://orai.io"
+documentation = "https://github.com/oraichain/prediction-market.git"
+exclude = [
+    # Those files are rust-optimizer artifacts. You might want to commit them for convenience but they should not be part of the source code publication.
+    "contract.wasm",
+    "hash.txt",
+]
+resolver = '2'
+
+[profile.release]
+opt-level = 3
+debug = false
+debug-assertions = false
+codegen-units = 1
+incremental = false
+rpath = false
+lto = true
+overflow-checks = true
+panic = 'abort'
+
+
+[dependencies]
+cosmwasm-std = { version = "1.5" }
+cosmwasm-schema = { version = "1.5" }
+cosmwasm-storage = { version = "1.5" }
+cosmwasm-vm = { version = "1.5" }
+
+thiserror = "1.0.26"
+cw2 = { version = "1.0.1" }
+cw20 = { version = "1.0.1" }
+cw20-base = { version = "1.0.1" }
+cw-storage-plus = { version = "1.0.1" }
+derive_more = "0.99.17"
+
+[dev-dependencies]
+cosmwasm-testing-util = { git = "https://github.com/oraichain/cosmwasm-testing-util.git", rev = "8363328" }
